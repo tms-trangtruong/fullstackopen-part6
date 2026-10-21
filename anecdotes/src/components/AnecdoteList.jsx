@@ -1,4 +1,5 @@
 import { useAnecdotes, useAnecdoteActions, useFilter } from "../store"
+import anecdotesService from "../services/anecdotes"
 
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes()
@@ -9,6 +10,12 @@ const AnecdoteList = () => {
     .filter((a) => a.content.toLowerCase().includes(filter.toLowerCase()))
     .toSorted((a, b) => b.votes - a.votes)
 
+  const handleVote = async (anecdote) => {
+    const changed = { ...anecdote, votes: anecdote.votes + 1 }
+    const saved = await anecdotesService.update(changed)
+    vote(saved)
+  }
+
   return (
     <div>
       {anecdotesToShow.map((anecdote) => (
@@ -16,7 +23,7 @@ const AnecdoteList = () => {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => handleVote(anecdote)}>vote</button>
           </div>
         </div>
       ))}
