@@ -1,4 +1,4 @@
-import { useNotification } from './NotificationContext'
+import { useNotificationValue } from '../hooks/useNotify'
 
 const Notification = () => {
   const style = {
@@ -7,7 +7,7 @@ const Notification = () => {
     borderWidth: 1,
     marginBottom: 5,
   }
-  const { notification } = useNotification()
+  const notification = useNotificationValue()
 
   if (!notification) return null
 

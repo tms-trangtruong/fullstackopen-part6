@@ -1,11 +1,11 @@
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import { useAnecdotes } from './hooks/useAnecdotes'
-import { useNotification } from './components/NotificationContext'
+import { useNotify } from './hooks/useNotify'
 
 const App = () => {
   const { anecdotes, isPending, isError, voteAnecdote } = useAnecdotes()
-  const { showNotification } = useNotification()
+  const showNotification = useNotify()
 
   const handleVote = (anecdote) => {
     voteAnecdote(anecdote)
