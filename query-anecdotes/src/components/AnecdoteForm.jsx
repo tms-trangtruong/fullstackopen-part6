@@ -9,8 +9,14 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.reset()
-    addAnecdote(content)
-    showNotification(`you created '${content}'`)
+    addAnecdote(content, {
+      onSuccess: () => {
+        showNotification(`you created '${content}'`)
+      },
+      onError: (error) => {
+        showNotification(error.message)
+      },
+    })
   }
 
   return (

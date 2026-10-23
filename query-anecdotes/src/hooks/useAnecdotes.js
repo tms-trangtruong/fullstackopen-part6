@@ -28,8 +28,8 @@ export const useAnecdotes = () => {
     },
   })
 
-  const addAnecdote = (content) => {
-    newAnecdoteMutation.mutate(content)
+  const addAnecdote = (content, callbacks) => {
+    newAnecdoteMutation.mutate(content, callbacks)
   }
 
   const voteAnecdote = (anecdote) => {
